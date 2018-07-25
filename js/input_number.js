@@ -17,6 +17,9 @@ Vue.component('input-number',{
 			<button
 				@click="handleUp"
 				:disabled="currentValue >= max">+</button>
+			<button
+				@click="handleStepup"
+				:disabled="currentValue >= max">++</button>
 		</div>`,
 	props: {
 		max: {
@@ -30,6 +33,10 @@ Vue.component('input-number',{
 		value: {
 			type:Number,
 			default:0
+		},
+		step:{
+			type:Number,
+			default:5
 		}
 	},
 	data: function() {
@@ -54,6 +61,9 @@ Vue.component('input-number',{
 		handleUp: function(){
 			if(this.currentValue >= this.max ) return;
 			this.currentValue += 1;
+		},
+		handleStepup: function(){
+			this.currentValue += this.step;
 		},
 		updateValue: function(val){
 			if(val > this.max) val = this.max;
